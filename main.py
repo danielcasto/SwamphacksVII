@@ -1,5 +1,6 @@
 import pygame
-import player
+import scripts.player as player
+import scripts.wall as wall
 
 from pygame.locals import (
 	K_UP,
@@ -19,7 +20,8 @@ SCREEN_HEIGHT = 750
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 pygame.display.set_caption('Swamphack VII')
 
-player = player.Player()
+player1 = player.Player()
+wall1 = wall.Wall()
 
 gameActive = True
 while gameActive:
@@ -30,7 +32,8 @@ while gameActive:
 
 	screen.fill((0, 0, 0))
 	#draws player on screen
-	screen.blit(player.surf, player.rect)
+	screen.blit(player1.surf, player1.rect)
+	screen.blit(wall1.surf, wall1.rect)
 	#updates display
 	pygame.display.flip()
 
