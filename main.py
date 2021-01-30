@@ -1,6 +1,6 @@
 import pygame
 import scripts.player as player
-import scripts.wall as wall
+import scripts.wall_seg as wall
 
 from pygame.locals import (
 	K_UP,
@@ -27,11 +27,17 @@ gameActive = True
 while gameActive:
 
 	for event in pygame.event.get():
+		if event.type == KEYDOWN:
+			# If the Esc key is pressed, then exit the main loop
+			if event.key == K_ESCAPE:
+				gameActive = False
+
 		if event.type == pygame.QUIT:
 			gameActive = False
 
+	player1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
+
 	screen.fill((0, 0, 0))
-	#draws player on screen
 	screen.blit(player1.surf, player1.rect)
 	screen.blit(wall1.surf, wall1.rect)
 	#updates display
