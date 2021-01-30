@@ -1,7 +1,7 @@
 import pygame
 import scripts.player as player
 import scripts.wall_seg as wall
-
+import scripts.Screen as Scr
 from pygame.locals import (
 	K_UP,
 	K_DOWN,
@@ -16,13 +16,17 @@ pygame.init()
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 750
+white = (255,255,255)
+black = (0,0,0)
 
+red = (255,0,0)
+green = (0,255,0)
+blue = (0,0,255)
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 pygame.display.set_caption('Swamphack VII')
-
 player1 = player.Player()
 wall1 = wall.Wall()
-
+surface = pygame.image.load("img/Screen.png")
 gameActive = True
 while gameActive:
 
