@@ -7,5 +7,4 @@ class Player(pygame.sprite.Sprite):
 		# TODO
 		self.surf = pygame.Surface((100, 100))
 		self.surf = pygame.image.load("img/wall_segment.png").convert()
-		
 		self.rect = self.surf.get_rect()
