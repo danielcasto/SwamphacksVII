@@ -58,7 +58,7 @@ while maze:
 	player1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
 	wall1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
 
-	screen.fill((0, 0, 0))
+	screen.fill((255, 127, 39))
 	screen.blit(wall1.surf, wall1.rect)
 	screen.blit(player1.surf, player1.rect)
 	#updates display

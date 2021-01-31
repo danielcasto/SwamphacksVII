@@ -26,7 +26,7 @@ class Wall(pygame.sprite.Sprite):
 		if pressed_keys[K_RIGHT]:
 			self.rect.move_ip(-1, 0)
 			
-		if self.rect.left > 0:
-			self.rect.left = 0
-		if self.rect.right < 1000:
-			self.rect.right = 1000
+		if self.rect.left > 450:
+			self.rect.left = 450
+		if self.rect.right < 500:
+			self.rect.right = 500
