@@ -15,7 +15,9 @@ from pygame.locals import (
 
 pygame.init()
 
-
+pygame.mixer.music.load('songs/ElectronicFantasy.wav')
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1)
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 750
