@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
 	def __init__(self):
 		super(Player, self).__init__()
 		self.surf = pygame.Surface((69, 69))
-		self.surf = pygame.image.load("img/gator_right.png").convert()
+		self.surf = pygame.image.load("img/gator_right.png").convert_alpha()
 		self.rect = self.surf.get_rect()
 		
 		
@@ -27,15 +27,12 @@ class Player(pygame.sprite.Sprite):
 			self.rect.move_ip(0, 1)
 		if pressed_keys[K_LEFT]:
 			self.rect.move_ip(0, 0)
-			self.surf = pygame.image.load("img/gator_left.png").convert()
+			self.surf = pygame.image.load("img/gator_left.png").convert_alpha()
 			
 
 		if pressed_keys[K_RIGHT]:
 			self.rect.move_ip(0, 0)
-			self.surf = pygame.image.load("img/gator_right.png").convert()
-			
-			
-			
+			self.surf = pygame.image.load("img/gator_right.png").convert_alpha()
 
 
 		# Keep player on the screen

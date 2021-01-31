@@ -50,7 +50,7 @@ while maze:
 			if event.key == K_ESCAPE:
 				maze = False
 				atm = False
-			
+
 			else:
 				startGame = True
 
