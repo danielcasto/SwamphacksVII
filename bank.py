@@ -2,7 +2,7 @@ import requests
 import json
 
 class BankAccount:
-	def __init__(self,  email_address, password, name, address, state, zipcode, balance = 0):
+	def __init__(self,  email_address, password, balance = 0):
 		self.email_address = email_address
 		self.__password = password
 		self.name = name
@@ -18,6 +18,3 @@ class BankAccount:
 			return self.__password
 	def GetBalance(self):
 			return self.__balance
-
-account = BankAccount("Michaelmendez@mail.com", "password", "Michael Mendez",'3709 Eagle Isle Circle','Florida', 34746)
-account.GetBalance()

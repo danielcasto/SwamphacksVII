@@ -71,6 +71,10 @@ while maze:
 
 
 font = pygame.font.Font('freesansbold.ttf', 32)
+userInfo = ["Email Address", "Password"]
+i = 0
+userTyped = False
+infoEntered = False
 while atm:
 	for event in pygame.event.get():
 		if event.type == KEYDOWN:
@@ -78,15 +82,28 @@ while atm:
 			if event.key == K_ESCAPE:
 				atm = False
 			elif event.key == pygame.K_RETURN:
-				print(text)
+				userInfo[i] = text
 				text = ''
+				userTyped = False
+				i = i + 1
+
+				# 2 is an index greater than the list above
+				if i >= 2:
+					infoEntered = True
 			elif event.key == pygame.K_BACKSPACE:
 				text = text[:-1]
 			else:
+				if not userTyped:
+					userTyped = True
+					text = ''
+
 				text += event.unicode
 
 		if event.type == pygame.QUIT:
 			atm = False
+
+	if not userTyped and not infoEntered:
+		text  = userInfo[i]
 
 	displayText = font.render(text, True, green, blue)
 	displayTextRect = displayText.get_rect()
@@ -100,5 +117,5 @@ while atm:
 	pygame.display.flip()
 
 
-pygame.quit()
 
+pygame.quit()
