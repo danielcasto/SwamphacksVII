@@ -4,15 +4,7 @@ import scripts.wall_seg as wall
 import scripts.bank as bank
 from pygame import mixer
 
-from pygame.locals import (
-	K_UP,
-	K_DOWN,
-	K_LEFT,
-	K_RIGHT,
-	K_ESCAPE,
-	KEYDOWN,
-	QUIT,
-)
+from pygame.locals import *
 
 pygame.init()
 
@@ -74,28 +66,49 @@ while maze:
 font = pygame.font.Font('freesansbold.ttf', 32)
 userInfo = ["Email Address", "Password"]
 bankInfo = bank.BankAccount('Email Address', 'Password')
+
+withdrawBtn = font.render('Withdraw', True, green, blue)
+withdrawRect = withdrawBtn.get_rect()
+
+depositBtn = font.render('Deposit', True, green, blue)
+depositRect = depositBtn.get_rect()
+
+
 i = 0
 userTyped = False
 infoEntered = False
+buttonsVisible = True
+withdrawBtnClicked = False
+depositBtnClicked = False
+temp = True
 while atm:
 	for event in pygame.event.get():
 		if event.type == KEYDOWN:
 			# If the Esc key is pressed, then exit the main loop
 			if event.key == K_ESCAPE:
 				atm = False
-			elif event.key == pygame.K_RETURN:
-				if i == 0:
-					bankInfo.email_address = text
-				elif i == 1:
-					bankInfo.Password = text
+			elif event.key == K_RETURN:
+				if not infoEntered:
+					if i == 0:
+						bankInfo.email_address = text
+					elif i == 1:
+						bankInfo.Password = text
 
-				text = ''
-				userTyped = False
-				i = i + 1
+					text = ''
+					userTyped = False
+					i = i + 1
 
-				if i >= 2:
-					infoEntered = True
-			elif event.key == pygame.K_BACKSPACE:
+					if i >= 2:
+						infoEntered = True
+				else:
+					if withdrawBtnClicked:
+						bankInfo.withdraw(int(text))
+						temp = True
+					elif depositBtnClicked:
+						bankInfo.deposit(int(text))
+						temp = True
+
+			elif event.key == K_BACKSPACE:
 				text = text[:-1]
 			else:
 				if not userTyped:
@@ -104,22 +117,41 @@ while atm:
 
 				text += event.unicode
 
+		if event.type == MOUSEBUTTONDOWN:
+				mouse_position = pygame.mouse.get_pos() 
+
+				if buttonsVisible:
+					if withdrawRect.collidepoint(mouse_position):
+						withdrawBtnClicked = True
+					elif depositRect.collidepoint(mouse_position):
+						depositBtnClicked = True
+
 		if event.type == pygame.QUIT:
 			atm = False
 
 	if not userTyped and not infoEntered:
 		text  = userInfo[i]
 
-	if infoEntered:
+	if infoEntered and temp:
 		text = 'Balance: $' + str(bankInfo.GetBalance()) 
+		buttonsVisible = True
+		temp = False
 
 	displayText = font.render(text, True, green, blue)
 	displayTextRect = displayText.get_rect()
 	displayTextRect.center = (450, 180)
-	#TODO figure out typing
+	withdrawRect.center = (300, 280)
+	depositRect.center = (600, 280)
+
 	screen.fill((0, 0, 0))
 	screen.blit(atmSurface, atmRect)
 	screen.blit(displayText, displayTextRect)
+
+	if buttonsVisible:
+
+
+		screen.blit(withdrawBtn, withdrawRect)
+		screen.blit(depositBtn, depositRect)	
 
 	#updates display
 	pygame.display.flip()

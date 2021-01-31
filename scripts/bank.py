@@ -6,13 +6,13 @@ class BankAccount:
 		print('new obj')
 	def __init__(self,  email_address, password, balance = 1756):
 		self.email_address = email_address
-		self.__password = password
-		self.__balance = balance
+		self.password = password
+		self.balance = balance
 	def deposit(self,amount):
 		self.balance += amount
 	def withdraw(self,amount):
 		self.balance -= amount
 	def GetPassword(self):
-			return self.__password
+			return self.password
 	def GetBalance(self):
-			return self.__balance
+			return self.balance
