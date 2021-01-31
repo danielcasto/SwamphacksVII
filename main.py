@@ -45,13 +45,14 @@ atm = True
 while maze:
 	for event in pygame.event.get():
 		if event.type == KEYDOWN:
+
 			# If the Esc key is pressed, then exit the main loop
 			if event.key == K_ESCAPE:
 				maze = False
 				atm = False
 
-			#if event.key == K_RIGHT:
-				#maze = False
+			if event.key == K_RIGHT:
+				maze = False
 
 		if event.type == pygame.QUIT:
 			maze = False
@@ -66,6 +67,8 @@ while maze:
 	#updates display
 	pygame.display.flip()
 
+
+font = pygame.font.Font('freesansbold.ttf', 32)
 while atm:
 	for event in pygame.event.get():
 		if event.type == KEYDOWN:
@@ -83,10 +86,13 @@ while atm:
 		if event.type == pygame.QUIT:
 			atm = False
 
+	displayText = font.render(text, True, green, blue)
+	displayTextRect = displayText.get_rect()
+	displayTextRect.center = (450, 180)
 	#TODO figure out typing
-
 	screen.fill((0, 0, 0))
 	screen.blit(atmSurface, atmRect)
+	screen.blit(displayText, displayTextRect)
 
 	#updates display
 	pygame.display.flip()
