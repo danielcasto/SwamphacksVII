@@ -15,9 +15,13 @@ from pygame.locals import (
 
 pygame.init()
 
+<<<<<<< HEAD
 pygame.mixer.music.load('songs/ElectronicFantasy.wav')
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
+=======
+
+>>>>>>> 3b645e239ca5f5445a84229ef11ef45f04cba3a9
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 750
@@ -62,7 +66,7 @@ while maze:
 	player1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
 	wall1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
 
-	screen.fill((0, 0, 0))
+	screen.fill((255, 127, 39))
 	screen.blit(wall1.surf, wall1.rect)
 	screen.blit(player1.surf, player1.rect)
 	#updates display
