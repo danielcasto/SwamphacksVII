@@ -2,13 +2,11 @@ import requests
 import json
 
 class BankAccount:
-	def __init__(self,  email_address, password, balance = 0):
+	def __init__():
+		print('new obj')
+	def __init__(self,  email_address, password, balance = 1756):
 		self.email_address = email_address
 		self.__password = password
-		self.name = name
-		self.address = address
-		self.state = state
-		self.zipcode = zipcode
 		self.__balance = balance
 	def deposit(self,amount):
 		self.balance += amount

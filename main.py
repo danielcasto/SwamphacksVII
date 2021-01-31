@@ -1,6 +1,7 @@
 import pygame
 import scripts.player as player
 import scripts.wall_seg as wall
+import scripts.bank as bank
 from pygame import mixer
 
 from pygame.locals import (
@@ -72,6 +73,7 @@ while maze:
 
 font = pygame.font.Font('freesansbold.ttf', 32)
 userInfo = ["Email Address", "Password"]
+bankInfo = bank.BankAccount('Email Address', 'Password')
 i = 0
 userTyped = False
 infoEntered = False
@@ -82,12 +84,15 @@ while atm:
 			if event.key == K_ESCAPE:
 				atm = False
 			elif event.key == pygame.K_RETURN:
-				userInfo[i] = text
+				if i == 0:
+					bankInfo.email_address = text
+				elif i == 1:
+					bankInfo.Password = text
+
 				text = ''
 				userTyped = False
 				i = i + 1
 
-				# 2 is an index greater than the list above
 				if i >= 2:
 					infoEntered = True
 			elif event.key == pygame.K_BACKSPACE:
@@ -104,6 +109,9 @@ while atm:
 
 	if not userTyped and not infoEntered:
 		text  = userInfo[i]
+
+	if infoEntered:
+		text = 'Balance: $' + str(bankInfo.GetBalance()) 
 
 	displayText = font.render(text, True, green, blue)
 	displayTextRect = displayText.get_rect()
