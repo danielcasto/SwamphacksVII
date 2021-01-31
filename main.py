@@ -32,11 +32,16 @@ atmSurface = pygame.image.load("img/ATM.jpg")
 atmRect = atmSurface.get_rect()
 
 text = ''
+font = pygame.font.Font('freesansbold.ttf', 32)
+beginningText = font.render('Gator Bank! Press any key to begin',  True, green, blue)
+beginningRect = beginningText.get_rect()
+beginningRect.center = (450, 180)
 
 
 ##### main maze and atm stuff below
 maze = True
 atm = True
+startGame = False
 while maze:
 	for event in pygame.event.get():
 		if event.type == KEYDOWN:
@@ -45,25 +50,30 @@ while maze:
 			if event.key == K_ESCAPE:
 				maze = False
 				atm = False
-
-			if event.key == K_RIGHT:
-				maze = False
+			
+			else:
+				startGame = True
 
 		if event.type == pygame.QUIT:
 			maze = False
 			atm = False
 
-	player1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
-	wall1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
+	if startGame:
+		player1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
+		wall1.update(pygame.key.get_pressed(), SCREEN_WIDTH, SCREEN_HEIGHT)
 
-	screen.fill((255, 127, 39))
-	screen.blit(wall1.surf, wall1.rect)
-	screen.blit(player1.surf, player1.rect)
+		screen.fill((255, 127, 39))
+		screen.blit(wall1.surf, wall1.rect)
+		screen.blit(player1.surf, player1.rect)
+	
+	else:
+		screen.blit(atmSurface, atmRect)
+		screen.blit(beginningText, beginningRect)
+
 	#updates display
 	pygame.display.flip()
 
 
-font = pygame.font.Font('freesansbold.ttf', 32)
 userInfo = ["Email Address", "Password"]
 bankInfo = bank.BankAccount('Email Address', 'Password')
 
