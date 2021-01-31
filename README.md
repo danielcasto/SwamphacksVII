@@ -5,4 +5,3 @@ ATM Picture Attribute:
 
 Modules used:
   pygame
-  requests
